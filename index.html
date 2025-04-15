@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quem Quer Ser um Milionário - Língua Portuguesa</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png">
+  <meta name="theme-color" content="#001f3f">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Quem Quer Ser um Milionário<br>Língua Portuguesa</h1>
+    <div id="score"></div>
+    <div id="level"></div>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div id="result"></div>
+    <button id="retry" style="display: none;">Tentar novamente</button>
+    <audio id="correct-sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+    <audio id="wrong-sound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+    <audio id="suspense-sound" src="https://cdn.pixabay.com/audio/2021/08/04/audio_fa6b1d4b50.mp3" loop autoplay></audio>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registrado com sucesso!'))
+        .catch(err => console.error('Erro ao registrar o Service Worker:', err));
+    }
+  </script>
+</body>
+</html>
