@@ -1,65 +1,22 @@
 
-const questions = [
-  {
-    question: "Qual era a principal base econômica do Brasil durante a Primeira República?",
-    options: ["Café", "Açúcar", "Minério de ferro", "Indústria"],
-    answer: 0,
-    level: "Fácil"
-  },
-  {
-    question: "O que foi a política do 'café com leite'?",
-    options: ["Uma união entre fazendeiros e operários", "A alternância de poder entre SP e MG", "A abolição da escravidão", "Um plano de industrialização"],
-    answer: 1,
-    level: "Fácil"
-  },
-  {
-    question: "Qual grupo social teve mais influência política durante a Primeira República?",
-    options: ["Operários", "Militares", "Coronéis e oligarquias rurais", "Imigrantes"],
-    answer: 2,
-    level: "Fácil"
-  },
-  {
-    question: "Qual movimento questionou a estrutura da República Oligárquica no início do século XX?",
-    options: ["Revolta da Armada", "Revolução Constitucionalista", "Revolta de Canudos", "Diretas Já"],
-    answer: 2,
-    level: "Médio"
-  },
-  {
-    question: "O que foi a Revolta da Vacina (1904)?",
-    options: ["Um protesto contra a escravidão", "Uma campanha a favor da vacinação", "Uma revolta popular contra vacinação obrigatória", "Um motim militar"],
-    answer: 2,
-    level: "Médio"
-  },
-  {
-    question: "Qual cidade foi o foco da modernização urbana durante a chamada Belle Époque brasileira?",
-    options: ["Salvador", "Belo Horizonte", "São Paulo", "Rio de Janeiro"],
-    answer: 3,
-    level: "Fácil"
-  },
-  {
-    question: "O que caracterizou a Belle Époque brasileira?",
-    options: ["Início da agricultura de subsistência", "Influência europeia na arte, arquitetura e comportamento", "Fim do coronelismo", "Reformas agrárias"],
-    answer: 1,
-    level: "Médio"
-  },
-  {
-    question: "Qual autor criticou a desigualdade social da Primeira República em sua obra?",
-    options: ["Lima Barreto", "Carlos Drummond", "Machado de Assis", "Cecília Meireles"],
-    answer: 0,
-    level: "Difícil"
-  },
-  {
-    question: "A modernização urbana do Rio de Janeiro resultou em:",
-    options: ["Melhoria imediata para os pobres", "Expulsão de moradores das áreas centrais", "Industrialização da cidade", "Redução das doenças"],
-    answer: 1,
-    level: "Médio"
-  },
-  {
-    question: "O termo 'Bela Época' era usado para:",
-    options: ["Definir o crescimento rural", "Criticar o governo militar", "Exaltar os avanços tecnológicos e culturais da elite urbana", "Falar sobre o Império"],
-    answer: 2,
-    level: "Médio"
-  }
+async function carregarPergunta() {
+  const response = await fetch(https://script.google.com/macros/s/AKfycbxC6kZMiC0snTVMrn0YXkCkgcateCxlundunmn7P4nsi9Po273hicOtKVpTTGHxHcbojw/exec);
+  const data = await response.json();
+
+  questionEl.innerText = data.pergunta;
+  levelEl.innerText = `Nível: ${data.nivel}`;
+  scoreEl.innerText = `Pontuação: R$ ${score}`;
+  optionsEl.innerHTML = "";
+
+  const opcoes = ['a', 'b', 'c', 'd'];
+  opcoes.forEach(letra => {
+    let btn = document.createElement("button");
+    btn.innerText = data[letra];
+    btn.onclick = () => verificarResposta(letra === data.correta);
+    optionsEl.appendChild(btn);
+  });
+}
+
 ];
 
 let currentQuestion = 0;
