@@ -13,7 +13,7 @@ const scoreValues = [100, 200, 300, 500, 800, 1200, 2000, 3000, 4000, 5000];
 let perguntaAtual = 0;
 
 async function carregarPergunta() {
-  const url = "https://script.google.com/macros/s/AKfycbzr5-p0xuphW4NhLzXPGqf7_GBHIKh5zsG5-9gt4gDfC6x2BaNgjL1XvBegQWs1_mfS1Q/exec"; 
+  const url = "https://script.google.com/macros/s/AKfycbyf18g5z8nJb23bsQTTVnPpu7Qat3EwOWHioCCY3nPSZiZrTAhAAPMdos11x-yh60J0dw/exec"; 
   const response = await fetch(url);
   const data = await response.json();
 
