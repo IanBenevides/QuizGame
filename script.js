@@ -1,6 +1,6 @@
 
 async function carregarPergunta() {
-  const response = await fetch(https://script.google.com/macros/s/AKfycbxC6kZMiC0snTVMrn0YXkCkgcateCxlundunmn7P4nsi9Po273hicOtKVpTTGHxHcbojw/exec);
+  const response = await fetch("https://script.google.com/macros/s/AKfycbxC6kZMiC0snTVMrn0YXkCkgcateCxlundunmn7P4nsi9Po273hicOtKVpTTGHxHcbojw/exec");
   const data = await response.json();
 
   questionEl.innerText = data.pergunta;
