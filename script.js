@@ -1,21 +1,27 @@
 
 async function carregarPergunta() {
-  const response = await fetch("https://script.google.com/macros/s/AKfycbxC6kZMiC0snTVMrn0YXkCkgcateCxlundunmn7P4nsi9Po273hicOtKVpTTGHxHcbojw/exec");
+  const url = "https://script.google.com/macros/s/AKfycbzmt-v2l8ZKPItWD1NO3myl5gPrINCBPxtoyBcvic1-/dev"; 
+  const response = await fetch(url);
   const data = await response.json();
 
-  questionEl.innerText = data.pergunta;
-  levelEl.innerText = `Nível: ${data.nivel}`;
-  scoreEl.innerText = `Pontuação: R$ ${score}`;
-  optionsEl.innerHTML = "";
+  if (data.erro) {
+    alert(data.erro);
+    return;
+  }
 
+  document.getElementById("pergunta").innerText = data.pergunta;
   const opcoes = ['a', 'b', 'c', 'd'];
-  opcoes.forEach(letra => {
-    let btn = document.createElement("button");
-    btn.innerText = data[letra];
-    btn.onclick = () => verificarResposta(letra === data.correta);
-    optionsEl.appendChild(btn);
+  const container = document.getElementById("opcoes");
+  container.innerHTML = "";
+
+  opcoes.forEach(op => {
+    const btn = document.createElement("button");
+    btn.innerText = data[op];
+    btn.onclick = () => verificarResposta(op === data.correta);
+    container.appendChild(btn);
   });
 }
+
 
 ];
 
