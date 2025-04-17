@@ -1,138 +1,62 @@
 const questions = [
   {
-    question: "Qual é a função da linguagem que prioriza a informação objetiva e clara?",
-    options: ["Poética", "Referencial", "Conativa", "Metalinguística"],
+    question: "Quanto é 5 dividido por 1?",
+    options: ["1", "5", "0", "10"],
     answer: 1,
     level: "Fácil"
   },
   {
-    question: "A função da linguagem usada para convencer ou influenciar o receptor é:",
-    options: ["Emotiva", "Referencial", "Conativa", "Fática"],
+    question: "Qual é o resultado de 9 ÷ 1?",
+    options: ["0", "1", "9", "8"],
     answer: 2,
     level: "Fácil"
   },
   {
-    question: "Qual elemento da comunicação está mais relacionado ao canal?",
-    options: ["Código", "Mensagem", "Receptor", "Fática"],
+    question: "12 dividido por 1 é igual a:",
+    options: ["11", "1", "12", "0"],
+    answer: 2,
+    level: "Fácil"
+  },
+  {
+    question: "7 ÷ 1 resulta em:",
+    options: ["6", "1", "8", "7"],
     answer: 3,
     level: "Fácil"
   },
   {
-    question: "Na palavra 'infelizmente', o prefixo 'in-' indica:",
-    options: ["Aumento", "Negação", "Intensidade", "Tempo"],
-    answer: 1,
-    level: "Médio"
-  },
-  {
-    question: "A palavra 'felizmente' é formada por:",
-    options: ["Radical e desinência", "Prefixo e radical", "Radical e sufixo", "Prefixo e sufixo"],
-    answer: 2,
-    level: "Médio"
-  },
-  {
-    question: "A função metalinguística é usada quando:",
-    options: [
-      "Queremos convencer alguém",
-      "Falamos sobre a própria linguagem",
-      "Transmitimos emoção",
-      "Conectamos o canal"
-    ],
-    answer: 1,
-    level: "Médio"
-  },
-  {
-    question: "Na comunicação, o emissor é responsável por:",
-    options: ["Decodificar", "Transmitir a mensagem", "Codificar", "Ouvir"],
+    question: "Dividir 3 por 1 dá:",
+    options: ["2", "1", "3", "0"],
     answer: 2,
     level: "Fácil"
   },
   {
-    question: "A função emotiva é centrada em qual elemento?",
-    options: ["Mensagem", "Código", "Emissor", "Receptor"],
+    question: "Quanto é 15 ÷ 1?",
+    options: ["14", "1", "15", "0"],
     answer: 2,
     level: "Fácil"
   },
   {
-    question: "A palavra 'releitura' contém:",
-    options: ["Prefixo e radical", "Radical e sufixo", "Prefixo, radical e sufixo", "Radical e desinência"],
+    question: "1 dividido por 1 é:",
+    options: ["0", "1", "2", "3"],
+    answer: 1,
+    level: "Fácil"
+  },
+  {
+    question: "20 ÷ 1 é igual a:",
+    options: ["20", "10", "1", "0"],
     answer: 0,
-    level: "Médio"
+    level: "Fácil"
   },
   {
-    question: "Em 'amávamos', a desinência verbal indica:",
-    options: ["Pessoa e número", "Tempo e modo", "Grau e gênero", "Voz passiva"],
-    answer: 1,
-    level: "Difícil"
+    question: "Dividindo 100 por 1 temos:",
+    options: ["1", "10", "100", "0"],
+    answer: 2,
+    level: "Fácil"
+  },
+  {
+    question: "8 dividido por 1 resulta em:",
+    options: ["9", "1", "7", "8"],
+    answer: 3,
+    level: "Fácil"
   }
 ];
-
-let currentQuestion = 0;
-let score = 0;
-
-const scoreValues = [100, 200, 300, 500, 800, 1200, 2000, 3000, 4000, 5000];
-
-let questionEl = document.getElementById("question");
-let optionsEl = document.getElementById("options");
-let resultEl = document.getElementById("result");
-let scoreEl = document.getElementById("score");
-let levelEl = document.getElementById("level");
-let retryBtn = document.getElementById("retry");
-let correctSound = document.getElementById("correct-sound");
-let wrongSound = document.getElementById("wrong-sound");
-
-function showQuestion() {
-  let q = questions[currentQuestion];
-
-  questionEl.innerText = q.question;
-  levelEl.innerText = `Nível: ${q.level}`;
-  scoreEl.innerText = `Pontuação: R$ ${score}`;
-
-  optionsEl.innerHTML = "";
-  resultEl.innerText = "";
-  retryBtn.style.display = "none";
-
-  q.options.forEach((option, index) => {
-    let btn = document.createElement("button");
-    btn.innerText = option;
-    btn.onclick = () => checkAnswer(index, btn);
-    optionsEl.appendChild(btn);
-  });
-}
-
-function checkAnswer(selected, button) {
-  const q = questions[currentQuestion];
-  const buttons = optionsEl.querySelectorAll("button");
-  buttons.forEach(b => b.disabled = true);
-
-  if (selected === q.answer) {
-    correctSound.play();
-    resultEl.innerText = "Resposta correta!";
-    button.classList.add("correct");
-    score += scoreValues[currentQuestion];
-    currentQuestion++;
-
-    setTimeout(() => {
-      if (currentQuestion < questions.length) {
-        showQuestion();
-      } else {
-        scoreEl.innerText = `Pontuação final: R$ ${score}`;
-        resultEl.innerText = "Parabéns! Você acertou todas!";
-        optionsEl.innerHTML = "";
-      }
-    }, 1500);
-  } else {
-    wrongSound.play();
-    resultEl.innerText = `Errou! Pontuação final: R$ ${score}`;
-    button.classList.add("wrong");
-    optionsEl.querySelectorAll("button")[q.answer].classList.add("correct");
-    retryBtn.style.display = "block";
-  }
-}
-
-retryBtn.onclick = () => {
-  currentQuestion = 0;
-  score = 0;
-  showQuestion();
-};
-
-showQuestion();
